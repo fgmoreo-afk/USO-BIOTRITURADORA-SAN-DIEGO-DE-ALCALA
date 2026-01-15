@@ -1,371 +1,112 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2639
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\froman\fcharset0 Times-Roman;\f2\fnil\fcharset0 AppleColorEmoji;
-}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
-{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
-
-\f0\fs29\fsmilli14667 \cf0 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 <!DOCTYPE html>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 <html lang="es">
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 <head>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<meta charset="UTF-8">
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<meta name="viewport" content="width=device-width, initial-scale=1.0">
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<title>Gestor BIO150S - IES San Diego de Alcal\'e1</title>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<style>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0:root \{ --primary: #004085; --danger: #dc3545; --success: #28a745; --warning: #ffc107; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0body \{ font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 10px; display: flex; justify-content: center; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.container \{ background: white; width: 100%; max-width: 600px; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.header \{ text-align: center; border-bottom: 3px solid var(--primary); margin-bottom: 15px; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.checklist-sec \{ background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #ffeeba; font-size: 0.9em; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.checklist-item \{ display: flex; align-items: center; margin-bottom: 8px; cursor: pointer; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.checklist-item input \{ margin-right: 10px; transform: scale(1.2); \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.timer-box \{ background: #1a1a1a; color: #00ff00; font-family: monospace; font-size: 3rem; text-align: center; padding: 15px; border-radius: 10px; margin: 15px 0; border: 4px solid #333; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.btn \{ padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; color: white; margin-bottom: 10px; font-size: 1rem; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.btn-start \{ background: var(--success); \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.btn-start:disabled \{ background: #ccc; cursor: not-allowed; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.btn-stop \{ background: var(--danger); display: none; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.btn-incident \{ background: var(--warning); color: #000; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.btn-pdf \{ background: var(--primary); \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0.stats \{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; font-size: 0.8em; margin-bottom: 15px; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0input[type="text"] \{ padding: 12px; width: 100%; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; \}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0</style>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 </head>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 <body>
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 <div class="container">
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<div class="header">
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0<h2 style="margin: 5px 0;">IES San Diego de Alcal\'e1</h2>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0<p style="margin: 5px 0; color: #666;">Control Biotrituradora BIO150S</p>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0</div>
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<input type="text" id="profesorName" placeholder="Nombre del Profesor Responsable" oninput="validate()">
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<div class="checklist-sec" id="checklist">
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0<strong>
-\f2 \uc0\u55357 \u56523 
-\f0  Checklist Obligatorio (Manual ANOVA):</strong>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0[span_0](start_span)<label class="checklist-item"><input type="checkbox" onchange="validate()"> Aceite verificado (1.2L 10W-30)[span_0](end_span)</label>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0[span_1](start_span)<label class="checklist-item"><input type="checkbox" onchange="validate()"> Cojinetes engrasados (Litio)[span_1](end_span)</label>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0[span_2](start_span)<label class="checklist-item"><input type="checkbox" onchange="validate()"> Torniller\'eda revisada[span_2](end_span)</label>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0[span_3](start_span)<label class="checklist-item"><input type="checkbox" onchange="validate()"> \'c1rea segura (15m distancia)[span_3](end_span)</label>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0[span_4](start_span)[span_5](start_span)<label class="checklist-item"><input type="checkbox" onchange="validate()"> Alumnos con gafas y botas[span_4](end_span)[span_5](end_span)</label>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0</div>
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<div class="timer-box" id="timer">00:00:00</div>
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<button class="btn btn-start" id="startBtn" onclick="startTimer()" disabled>DESBLOQUEAR Y TRABAJAR</button>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<button class="btn btn-stop" id="stopBtn" onclick="stopTimer()">FINALIZAR Y GUARDAR</button>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<button class="btn btn-incident" onclick="reportIncident()">
-\f2 \uc0\u9888 \u65039 
-\f0  REGISTRAR INCIDENCIA</button>
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<div class="stats">
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0<div>Total Horas<br><strong id="totalHours">0.00</strong></div>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0<div>Pr\'f3x. Aceite<br><strong id="oilDue">0.00</strong></div>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0<div>Buj\'eda (100h)<br><strong id="sparkDue">0.00</strong></div>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0</div>
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0<button class="btn btn-pdf" onclick="generatePDF()">DESCARGAR REPORTE PDF</button>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 </div>
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 <script>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0const \{ jsPDF \} = window.jspdf;
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0let timerInterval, startTime;
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0let data = JSON.parse(localStorage.getItem('bio_ies_sd')) || \{ total: 0, lastOil: 0, history: [], incidents: [] \};
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0function validate() \{
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0const checks = document.querySelectorAll('#checklist input[type="checkbox"]');
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0const allChecked = Array.from(checks).every(c => c.checked);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0const name = document.getElementById('profesorName').value.trim();
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('startBtn').disabled = !(allChecked && name.length > 3);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\}
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0function startTimer() \{
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0startTime = Date.now();
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('startBtn').style.display = "none";
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('profesorName').disabled = true;
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('checklist').style.opacity = "0.5";
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('stopBtn').style.display = "block";
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0timerInterval = setInterval(() => \{
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0let diff = Date.now() - startTime;
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0let h = Math.floor(diff / 3600000);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0let m = Math.floor((diff % 3600000) / 60000);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0let s = Math.floor((diff % 60000) / 1000);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('timer').innerText = `$\{h.toString().padStart(2,'0')\}:$\{m.toString().padStart(2,'0')\}:$\{s.toString().padStart(2,'0')\}`;
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\}, 1000);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\}
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0function stopTimer() \{
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0clearInterval(timerInterval);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0let sessionHours = (Date.now() - startTime) / 3600000;
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0data.total += sessionHours;
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0data.history.push(\{ prof: document.getElementById('profesorName').value, fecha: new Date().toLocaleString(), horas: sessionHours.toFixed(2) \});
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0localStorage.setItem('bio_ies_sd', JSON.stringify(data));
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0location.reload();
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\}
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0function reportIncident() \{
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0const tipo = prompt("Describa el problema (ej: atasco, cuchilla desafilada):");
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0if(tipo) \{
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0data.incidents.push(\{ prof: document.getElementById('profesorName').value || "N/A", tipo, fecha: new Date().toLocaleString() \});
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0localStorage.setItem('bio_ies_sd', JSON.stringify(data));
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0alert("Incidencia registrada.");
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\}
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0function generatePDF() \{
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0const doc = new jsPDF();
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0doc.setFontSize(16);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0doc.text("REPORTE BIO150S - IES SAN DIEGO DE ALCAL\'c1", 20, 20);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0doc.setFontSize(10);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0doc.text(`Horas totales de m\'e1quina: $\{data.total.toFixed(2)\} h`, 20, 35);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0doc.text("HISTORIAL DE INCIDENCIAS:", 20, 50);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0let y = 60;
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0data.incidents.slice(-10).forEach(i => \{ doc.text(`- $\{i.fecha\} [$\{i.prof\}]: $\{i.tipo\}`, 25, y); y += 7; \});
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0doc.save("reporte-bio150s-ies.pdf");
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\}
-\f1\fs24 \
-\
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0function init() \{
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('totalHours').innerText = data.total.toFixed(2);
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0let nextOil = data.lastOil === 0 ? 5 : data.lastOil + 25;
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('oilDue').innerText = nextOil.toFixed(2) + "h";
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0document.getElementById('sparkDue').innerText = (100 - (data.total % 100)).toFixed(2) + "h";
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0\}
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 \'a0\'a0\'a0\'a0init();
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 </script>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 </body>
-\f1\fs24 \
-
-\f0\fs29\fsmilli14667 </html>
-\f1\fs24 \
-\
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor BIO150S - IES San Diego de Alcalá</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root { --primary: #004085; --danger: #dc3545; --success: #28a745; --warning: #ffc107; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 10px; display: flex; justify-content: center; }
+        .container { background: white; width: 100%; max-width: 600px; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .header { text-align: center; border-bottom: 3px solid var(--primary); margin-bottom: 15px; }
+        .checklist-sec { background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #ffeeba; font-size: 0.9em; }
+        .checklist-item { display: flex; align-items: center; margin-bottom: 8px; cursor: pointer; }
+        .checklist-item input { margin-right: 10px; transform: scale(1.2); }
+        .timer-box { background: #1a1a1a; color: #00ff00; font-family: monospace; font-size: 3rem; text-align: center; padding: 15px; border-radius: 10px; margin: 15px 0; border: 4px solid #333; }
+        .btn { padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; color: white; margin-bottom: 10px; font-size: 1rem; }
+        .btn-start { background: var(--success); }
+        .btn-start:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-stop { background: var(--danger); display: none; }
+        .btn-incident { background: var(--warning); color: #000; }
+        .btn-pdf { background: var(--primary); }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; font-size: 0.8em; margin-bottom: 15px; }
+        input[type="text"] { padding: 12px; width: 100%; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h2 style="margin: 5px 0;">IES San Diego de Alcalá</h2>
+        <p style="margin: 5px 0; color: #666;">Control Biotrituradora BIO150S</p>
+    </div>
+    <input type="text" id="profesorName" placeholder="Nombre del Profesor Responsable" oninput="validate()">
+    <div class="checklist-sec" id="checklist">
+        <strong>📋 Checklist Obligatorio (Manual ANOVA):</strong>
+        <label class="checklist-item"><input type="checkbox" onchange="validate()"> Aceite verificado (1.2L 10W-30)</label>
+        <label class="checklist-item"><input type="checkbox" onchange="validate()"> Cojinetes engrasados (Litio)</label>
+        <label class="checklist-item"><input type="checkbox" onchange="validate()"> Tornillería revisada</label>
+        <label class="checklist-item"><input type="checkbox" onchange="validate()"> Área segura (15m distancia)</label>
+        <label class="checklist-item"><input type="checkbox" onchange="validate()"> Alumnos con gafas y botas</label>
+    </div>
+    <div class="timer-box" id="timer">00:00:00</div>
+    <button class="btn btn-start" id="startBtn" onclick="startTimer()" disabled>DESBLOQUEAR Y TRABAJAR</button>
+    <button class="btn btn-stop" id="stopBtn" onclick="stopTimer()">FINALIZAR Y GUARDAR</button>
+    <button class="btn btn-incident" onclick="reportIncident()">⚠️ REGISTRAR INCIDENCIA</button>
+    <div class="stats">
+        <div>Total Horas<br><strong id="totalHours">0.00</strong></div>
+        <div>Próx. Aceite<br><strong id="oilDue">0.00</strong></div>
+        <div>Bujía (100h)<br><strong id="sparkDue">0.00</strong></div>
+    </div>
+    <button class="btn btn-pdf" onclick="generatePDF()">DESCARGAR REPORTE PDF</button>
+</div>
+<script>
+    const { jsPDF } = window.jspdf;
+    let timerInterval, startTime;
+    let data = JSON.parse(localStorage.getItem('bio_ies_sd')) || { total: 0, lastOil: 0, history: [], incidents: [] };
+    function validate() {
+        const checks = document.querySelectorAll('#checklist input[type="checkbox"]');
+        const allChecked = Array.from(checks).every(c => c.checked);
+        const name = document.getElementById('profesorName').value.trim();
+        document.getElementById('startBtn').disabled = !(allChecked && name.length > 3);
+    }
+    function startTimer() {
+        startTime = Date.now();
+        document.getElementById('startBtn').style.display = "none";
+        document.getElementById('profesorName').disabled = true;
+        document.getElementById('checklist').style.opacity = "0.5";
+        document.getElementById('stopBtn').style.display = "block";
+        timerInterval = setInterval(() => {
+            let diff = Date.now() - startTime;
+            let h = Math.floor(diff / 3600000);
+            let m = Math.floor((diff % 3600000) / 60000);
+            let s = Math.floor((diff % 60000) / 1000);
+            document.getElementById('timer').innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+        }, 1000);
+    }
+    function stopTimer() {
+        clearInterval(timerInterval);
+        let sessionHours = (Date.now() - startTime) / 3600000;
+        data.total += sessionHours;
+        data.history.push({ prof: document.getElementById('profesorName').value, fecha: new Date().toLocaleString(), horas: sessionHours.toFixed(2) });
+        localStorage.setItem('bio_ies_sd', JSON.stringify(data));
+        location.reload();
+    }
+    function reportIncident() {
+        const tipo = prompt("Describa el problema:");
+        if(tipo) {
+            data.incidents.push({ prof: document.getElementById('profesorName').value || "N/A", tipo, fecha: new Date().toLocaleString() });
+            localStorage.setItem('bio_ies_sd', JSON.stringify(data));
+            alert("Incidencia registrada.");
+        }
+    }
+    function generatePDF() {
+        const doc = new jsPDF();
+        doc.setFontSize(16);
+        doc.text("REPORTE BIO150S - IES SAN DIEGO DE ALCALÁ", 20, 20);
+        doc.setFontSize(10);
+        doc.text(`Horas totales de máquina: ${data.total.toFixed(2)} h`, 20, 35);
+        let y = 60;
+        data.incidents.slice(-10).forEach(i => { doc.text(`- ${i.fecha} [${i.prof}]: ${i.tipo}`, 25, y); y += 7; });
+        doc.save("reporte-bio150s-ies.pdf");
+    }
+    function init() {
+        document.getElementById('totalHours').innerText = data.total.toFixed(2);
+        let nextOil = data.lastOil === 0 ? 5 : data.lastOil + 25;
+        document.getElementById('oilDue').innerText = nextOil.toFixed(2) + "h";
+        document.getElementById('sparkDue').innerText = (100 - (data.total % 100)).toFixed(2) + "h";
+    }
+    init();
+</script>
+</body>
+</html>
